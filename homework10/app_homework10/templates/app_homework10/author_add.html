@@ -1,0 +1,32 @@
+{% extends "app_homework10/base.html" %}
+
+{% block content %}
+<h1>Create new author page</h1>
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+<form action="{% url 'app_homework10:author_add' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        {{form.fullname}}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Birthday</label>
+        {{form.birthday}}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Birth place</label>
+        {{form.birth_place}}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Biography</label>
+        {{form.bio}}
+    </div>
+    <button type="submit" class="btn btn-primary">Create new author</button>
+</form>
+{% endblock %}

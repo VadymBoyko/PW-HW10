@@ -1,0 +1,25 @@
+{% extends "app_homework10/base.html" %}
+
+{% block content %}
+<h1>Create new qoute</h1>
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<form action="{% url 'app_homework10:quote_add' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Quote</label>
+        {{form.quote}}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        {{form.author}}
+    </div>
+    <button type="submit" class="btn btn-primary">Save new quote</button>
+</form>
+{% endblock %}
